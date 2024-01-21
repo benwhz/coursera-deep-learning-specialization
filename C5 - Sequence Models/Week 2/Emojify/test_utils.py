@@ -1,15 +1,15 @@
 from termcolor import colored
 
-from tensorflow.keras.layers import Input
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import MaxPooling2D
-from tensorflow.keras.layers import Dropout 
-from tensorflow.keras.layers import Conv2DTranspose
-from tensorflow.keras.layers import concatenate
-from tensorflow.keras.layers import ZeroPadding2D
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import LSTM
-from tensorflow.keras.layers import RepeatVector
+from keras.layers import Input
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Dropout 
+from keras.layers import Conv2DTranspose
+from keras.layers import concatenate
+from keras.layers import ZeroPadding2D
+from keras.layers import Dense
+from keras.layers import LSTM
+from keras.layers import RepeatVector
 
 
 # Compare the two inputs

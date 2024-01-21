@@ -57,10 +57,10 @@ def rnn_step_forward(parameters, a_prev, x):
     return a_next, p_t
 
 def rnn_step_backward(dy, gradients, parameters, x, a, a_prev):
-    
+    # y = Wya@a + by
     gradients['dWya'] += np.dot(dy, a.T)
     gradients['dby'] += dy
-    da = np.dot(parameters['Wya'].T, dy) + gradients['da_next'] # backprop into h
+    da = np.dot(parameters['Wya'].T, dy) + gradients['da_next'] # backprop into h, why need + gradients['da_next']? Gradient needs to be accumulated!!
     daraw = (1 - a * a) * da # backprop through tanh nonlinearity
     gradients['db'] += daraw
     gradients['dWax'] += np.dot(daraw, x.T)
@@ -99,6 +99,9 @@ def rnn_forward(X, Y, a0, parameters, vocab_size = 27):
         a[t], y_hat[t] = rnn_step_forward(parameters, a[t-1], x[t])
         
         # Update the loss by substracting the cross-entropy term of this time-step from it.
+        # L = - Y_t * log(Y_hat_t) , where Y_t == 1
+        wt = y_hat[t][Y[t],0]
+        #print(type(wt))
         loss -= np.log(y_hat[t][Y[t],0])
         
     cache = (y_hat, a, x)
@@ -121,6 +124,7 @@ def rnn_backward(X, Y, parameters, cache):
     ### START CODE HERE ###
     # Backpropagate through time
     for t in reversed(range(len(X))):
+        # softmax derivative, dy = y_hat - y ? why
         dy = np.copy(y_hat[t])
         dy[Y[t]] -= 1
         gradients = rnn_step_backward(dy, gradients, parameters, x[t], a[t], a[t-1])

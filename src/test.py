@@ -1,10 +1,19 @@
 import numpy as np
-from music21 import *
+#from music21 import *
+import emoji
+
+print(emoji.emojize('Python is :red_heart:'))
+
+str = 'this is a test String.'
+
+words = str.lower().split()
 
 x = np.random.randn(3, 10, 4)
-
 print(x)
 
+a = np.ones([5,])
+b = np.ones(10)
+print(np.dot(a,b))
 """ for n in range(4):
     print(x[:,:,n])
  """

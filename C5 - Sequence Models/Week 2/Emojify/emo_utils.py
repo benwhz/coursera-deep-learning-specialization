@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 
 def read_glove_vecs(glove_file):
-    with open(glove_file, 'r') as f:
+    with open(glove_file, 'r', encoding='utf-8') as f:
         words = set()
         word_to_vec_map = {}
         for line in f:
@@ -48,6 +48,7 @@ def read_csv(filename = 'data/emojify_data.csv'):
 
 def convert_to_one_hot(Y, C):
     Y = np.eye(C)[Y.reshape(-1)]
+    #print(Y.shape)
     return Y
 
 
@@ -62,7 +63,7 @@ def label_to_emoji(label):
     """
     Converts a label (int or string) into the corresponding emoji code (string) ready to be printed
     """
-    return emoji.emojize(emoji_dictionary[str(label)], use_aliases=True)
+    return emoji.emojize(emoji_dictionary[str(label)], language='alias')
               
     
 def print_predictions(X, pred):

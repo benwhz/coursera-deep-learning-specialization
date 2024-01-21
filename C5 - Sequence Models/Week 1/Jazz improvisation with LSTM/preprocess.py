@@ -26,7 +26,11 @@ def __parse_midi(data_fn):
     midi_data = converter.parse(data_fn)
     # Get melody part, compress into single voice.
     melody_stream = midi_data[5]     # For Metheny piece, Melody is Part #5.
-    melody1, melody2 = melody_stream.getElementsByClass(stream.Voice)
+    tmp = melody_stream.getElementsByClass(stream.Voice)
+    print(tmp, type(tmp))
+    #melody1, melody2 = melody_stream.recurse().getElementsByClass(stream.Voice)
+    melody1, melody2 = melody_stream[stream.Voice]
+
     for j in melody2:
         melody1.insert(j.offset, j)
     melody_voice = melody1
