@@ -86,7 +86,7 @@ def load_dataset(m):
     return dataset, human, machine, inv_machine
 
 def preprocess_data(dataset, human_vocab, machine_vocab, Tx, Ty):
-    
+    # unzip dataset
     X, Y = zip(*dataset)
     
     X = np.array([string_to_int(i, Tx, human_vocab) for i in X])
