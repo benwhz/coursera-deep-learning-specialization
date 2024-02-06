@@ -51,13 +51,17 @@ def dot_test():
     print(r.shape)
 
 lmb_layer = Lambda(lambda x: [x/2, x*2])
+fc_layer = Dense(30)
 
-def print_node_info(lmb_layer):
-    for node in lmb_layer._inbound_nodes:
+def print_node_info(layer):
+    for node in layer._inbound_nodes:
         print(node)
-        for tensor in node.output_tensors:
-            print(tensor)
-
+        if type(node.output_tensors) == list:
+            for tensor in node.output_tensors:
+                print(tensor)
+        else:
+            print(node.output_tensors)
+            
 def keras_layer_test():
     inp1 = Input((10,))
     inp2 = Input((20,))
@@ -68,12 +72,19 @@ def keras_layer_test():
     print_node_info(lmb_layer)
     a2, b2 = lmb_layer(inp2)
     print_node_info(lmb_layer)
+    a3, b3 = lmb_layer(inp3)
+    print_node_info(lmb_layer)
 
     d1 = Dense(10)(a1)
     d2 = Dense(20)(b1)
     d3 = Dense(30)(a2)
     d4 = Dense(40)(b2)
-    d5 = Dense(10)(inp3)
+    
+    s = a3
+    for n in range(10):
+        print_node_info(fc_layer)
+        s = fc_layer(s)
+    d5 = Dense(50)(s)
 
     model = Model(inputs=[inp1, inp2, inp3], outputs=[d1, d2, d3, d4, d5])
     model.summary()

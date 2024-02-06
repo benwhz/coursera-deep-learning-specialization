@@ -14,6 +14,7 @@ from tensorflow.keras.layers import TimeDistributed
 from tensorflow.keras.layers import GRU
 from tensorflow.keras.layers import Conv1D
 
+
 # Compare the two inputs
 def comparator(learner, instructor):
     layer = 0

@@ -19,6 +19,7 @@ def graph_spectrogram(wav_file):
 # Load a wav file
 def get_wav_info(wav_file):
     rate, data = wavfile.read(wav_file)
+    print(rate)
     return rate, data
 
 # Used to standardize volume of audio clip

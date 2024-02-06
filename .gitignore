@@ -6,3 +6,4 @@ venv
 __pycache__
 *.h5
 *.txt
+*.zip
