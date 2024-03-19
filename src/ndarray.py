@@ -31,7 +31,7 @@ def tokenizer_test():
     encoding = tokenizer(text[1], text[0], truncation=True, padding=True, max_length=tokenizer.model_max_length)
     print(encoding.input_ids)
 
-    pytorch_model = DistilBertForQuestionAnswering.from_pretrained("model/pytorch")
+    pytorch_model = DistilBertForQuestionAnswering.from_pretrained("distilbert-base-cased")
 
 if __name__ == '__main__':
     tokenizer_test()
