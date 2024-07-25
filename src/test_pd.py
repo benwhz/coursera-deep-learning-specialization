@@ -79,10 +79,17 @@ def tokenizer_chinese():
     tokenized_inputs = tokenizer(examples, truncation=True, is_split_into_words=False, padding='max_length', max_length=512)
     """
     sentences = ["今天 天气 不错",'今天 天气 非常 糟糕',"今天 天气 很好",'今天 天气 很差']
-    tokenizer = AutoTokenizer.from_pretrained('bert-base-chinese', use_fast = False, tokenize_chinese_chars = True)
+    tokenizer = AutoTokenizer.from_pretrained('bert-base-chinese', use_fast = False, tokenize_chinese_chars = False)
     out = tokenizer(sentences)
 
     pass
 
+from transformers import pipeline
+
+def tf_test():
+    nlp = pipeline('sentiment-analysis')
+    result = nlp('We are very happy to include pipline into the transformers repository.')
+    print(result)
+
 if __name__ == '__main__':
-    tokenizer_chinese()
+    tf_test()
