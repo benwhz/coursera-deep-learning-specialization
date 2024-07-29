@@ -129,7 +129,7 @@ Here are the course summary as its given on the course [link](https://www.course
 
 - Adding regularization to NN will help it reduce variance (overfitting)
 - L1 matrix norm:
-  - `||W|| = Sum(|w[i,j]|)  # sum of absolute values of all w`
+  - $||W|| = \sum_{i,j}(|w_{i,j}|)$  # sum of absolute values of all w
 - L2 matrix norm because of arcane technical math reasons is called Frobenius norm:
   - `||W||^2 = Sum(|w[i,j]|^2)	# sum of all w squared`
   - Also can be calculated as `||W||^2 = W.T * W if W is a vector`
@@ -173,11 +173,11 @@ Here are the course summary as its given on the course [link](https://www.course
 
 Here are some intuitions:
   - Intuition 1:
-     - If `lambda` is too large - a lot of w's will be close to zeros which will make the NN simpler (you can think of it as it would behave closer to logistic regression).
-     - If `lambda` is good enough it will just reduce some weights that makes the neural network overfit.
+     - If $\lambda$ is too large - a lot of w's will be close to zeros which will make the NN simpler (you can think of it as it would behave closer to logistic regression).
+     - If $\lambda$ is good enough it will just reduce some weights that makes the neural network overfit.
   - Intuition 2 (with _tanh_ activation function):
-     - If `lambda` is too large, w's will be small (close to zero) - will use the linear part of the _tanh_ activation function, so we will go from non linear activation to _roughly_ linear which would make the NN a _roughly_ linear classifier.
-     - If `lambda` good enough it will just make some of _tanh_ activations _roughly_ linear which will prevent overfitting.
+     - If $\lambda$ is too large, w's will be small (close to zero) - will use the linear part of the _tanh_ activation function, so we will go from non linear activation to _roughly_ linear which would make the NN a _roughly_ linear classifier.
+     - If $\lambda$ good enough it will just make some of _tanh_ activations _roughly_ linear which will prevent overfitting.
      
 _**Implementation tip**_: if you implement gradient descent, one of the steps to debug gradient descent is to plot the cost function J as a function of the number of iterations of gradient descent and you want to see that the cost function J decreases **monotonically** after every elevation of gradient descent with regularization. If you plot the old definition of J (no regularization) then you might not see it decrease monotonically.
 
@@ -337,9 +337,9 @@ _**Implementation tip**_: if you implement gradient descent, one of the steps to
 
 ### Initialization summary
 
-- The weights W<sup>[l]</sup> should be initialized randomly to break symmetry
+- The weights $W^{[l]}$ should be initialized randomly to break symmetry
 
-- It is however okay to initialize the biases b<sup>[l]</sup> to zeros. Symmetry is still broken so long as W<sup>[l]</sup> is initialized randomly
+- It is however okay to initialize the biases $b^{[l]}$ to zeros. Symmetry is still broken so long as $W^{[l]}$ is initialized randomly
 
 - Different initializations lead to different results
 
